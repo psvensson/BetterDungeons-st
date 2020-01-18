@@ -5,8 +5,8 @@ A port of the Better Dungeons JS package to Smalltalk (https://github.com/slayer
 If using Squeak, please install the Metacella package from Tools->Monticello Browser.
 ```Smalltalk
 Metacello new
-    repository: 'github://psvensson/Easystar-st:master';
-    baseline: 'Easystar';
+    repository: 'github://psvensson/BetterDungeons-st:master';
+    baseline: 'BetterDungeons';
     load
 ```    
 # Usage
