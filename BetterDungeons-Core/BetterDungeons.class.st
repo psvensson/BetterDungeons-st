@@ -1,5 +1,5 @@
 Class {
-	#name : #BetterDungeon,
+	#name : #BetterDungeons,
 	#superclass : #Object,
 	#instVars : [
 		'seed',
@@ -15,11 +15,11 @@ Class {
 		'passes',
 		'random'
 	],
-	#category : #'BetterDungeon-Core'
+	#category : #'BetterDungeons-Core'
 }
 
 { #category : #testing }
-BetterDungeon >> addRoomAt: col row: row width: roomWidth lenght: roomLength [
+BetterDungeons >> addRoomAt: col row: row width: roomWidth lenght: roomLength [
 	| room |
 	Transcript show:'addRoom at ',(col asString),',',(row asString);cr.
 			room := self
@@ -31,7 +31,7 @@ BetterDungeon >> addRoomAt: col row: row width: roomWidth lenght: roomLength [
 ]
 
 { #category : #accessing }
-BetterDungeon >> countAdjacentWalls: x y: y [
+BetterDungeons >> countAdjacentWalls: x y: y [
 	| wallCounter dirs |
 	wallCounter := 0.
 	dirs := OrderedCollection  new.
@@ -53,21 +53,21 @@ BetterDungeon >> countAdjacentWalls: x y: y [
 ]
 
 { #category : #testing }
-BetterDungeon >> countRoomLengthColumn: col row: row index: i [
+BetterDungeons >> countRoomLengthColumn: col row: row index: i [
 	(self isWallX: col  y: row + 1)  ifTrue: [ ^i ]
 	ifFalse: [^ self countRoomWidthColumn: col row: row + 1 index: i + 1]
 	
 ]
 
 { #category : #testing }
-BetterDungeon >> countRoomWidthColumn: col row: row index: i [
+BetterDungeons >> countRoomWidthColumn: col row: row index: i [
 	(self isWallX: col + 1 y: row)  ifTrue: [ ^i ]
 	ifFalse: [^ self countRoomWidthColumn: col +1 row: row  index: i + 1]
 	
 ]
 
 { #category : #accessing }
-BetterDungeon >> createDungeon [
+BetterDungeons >> createDungeon [
 	self prepareDungeon .
 	self fillRandom.
 	self passes: ((gridWidth sqrt * gridLength sqrt) / 2) asInteger .
@@ -81,7 +81,7 @@ BetterDungeon >> createDungeon [
 ]
 
 { #category : #initialization }
-BetterDungeon >> createRoomAt: point [
+BetterDungeons >> createRoomAt: point [
 	| col row roomWidth roomLength |
 	Transcript show:'createRoom..';cr.
 	col := point x.
@@ -102,7 +102,7 @@ BetterDungeon >> createRoomAt: point [
 ]
 
 { #category : #initialization }
-BetterDungeon >> createRooms [
+BetterDungeons >> createRooms [
 	Transcript
 		show: 'createRooms';
 		cr.
@@ -125,7 +125,7 @@ BetterDungeon >> createRooms [
 ]
 
 { #category : #initialization }
-BetterDungeon >> createWall: x y: y [
+BetterDungeons >> createWall: x y: y [
 	| value numWalls |
 	value := self gridAt: x @ y.
 	numWalls := self countAdjacentWalls: x y: y.
@@ -139,7 +139,7 @@ BetterDungeon >> createWall: x y: y [
 ]
 
 { #category : #accessing }
-BetterDungeon >> createWallAroundRooms: x y: y [
+BetterDungeons >> createWallAroundRooms: x y: y [
 	| value numWalls |
 	value := self gridAt: x @ y.
 	numWalls := self countAdjacentWalls: x y: y.
@@ -149,7 +149,7 @@ BetterDungeon >> createWallAroundRooms: x y: y [
 ]
 
 { #category : #initialization }
-BetterDungeon >> fillRandom [
+BetterDungeons >> fillRandom [
 	| yd xd walls |
 	walls := 0.
 	yd := self gridLength .
@@ -165,7 +165,7 @@ BetterDungeon >> fillRandom [
 ]
 
 { #category : #initialization }
-BetterDungeon >> fillRooms [
+BetterDungeons >> fillRooms [
 	Transcript
 		show: 'fillRooms';
 		cr.
@@ -182,7 +182,7 @@ BetterDungeon >> fillRooms [
 ]
 
 { #category : #initialization }
-BetterDungeon >> fillWalkable [
+BetterDungeons >> fillWalkable [
 	gridLength timesRepeat: [ :row |
 		 gridWidth timesRepeat: [ :col |
 			| point |
@@ -193,7 +193,7 @@ BetterDungeon >> fillWalkable [
 ]
 
 { #category : #accessing }
-BetterDungeon >> getArrayFromQuadTree [
+BetterDungeons >> getArrayFromQuadTree [
 	| array |
 	array := OrderedCollection new.
 	1 to: gridLength do: [ :y | 
@@ -208,7 +208,7 @@ BetterDungeon >> getArrayFromQuadTree [
 ]
 
 { #category : #accessing }
-BetterDungeon >> getMap [
+BetterDungeons >> getMap [
 	| rect |
 	rect := Rect
 		x: 1
@@ -219,7 +219,7 @@ BetterDungeon >> getMap [
 ]
 
 { #category : #accessing }
-BetterDungeon >> getMapCells [
+BetterDungeons >> getMapCells [
 	| array walls floor rect results |
 	walls := 0.
 	floor := 0.
@@ -253,7 +253,7 @@ BetterDungeon >> getMapCells [
 ]
 
 { #category : #initialization }
-BetterDungeon >> getRoomGridColumn: col row: row width: roomWidth length: roomLength [
+BetterDungeons >> getRoomGridColumn: col row: row width: roomWidth length: roomLength [
 	| roomGrid |
 	roomGrid := OrderedCollection new.
 	row to: row + roomLength do:
@@ -262,7 +262,7 @@ BetterDungeon >> getRoomGridColumn: col row: row width: roomWidth length: roomLe
 ]
 
 { #category : #testing }
-BetterDungeon >> getRoomLengthColumn: col row: row roomWidth: roomWidth [
+BetterDungeons >> getRoomLengthColumn: col row: row roomWidth: roomWidth [
 	| possibleLengths roomLength |
 	possibleLengths := OrderedCollection new.
 	1 to: roomWidth
@@ -275,12 +275,12 @@ BetterDungeon >> getRoomLengthColumn: col row: row roomWidth: roomWidth [
 ]
 
 { #category : #accessing }
-BetterDungeon >> grid [
+BetterDungeons >> grid [
 	^ grid
 ]
 
 { #category : #accessing }
-BetterDungeon >> gridAt: pos [
+BetterDungeons >> gridAt: pos [
 	| point result rv |
 	rv := 0.
 	point := QuadTree pointRectFor: pos.
@@ -291,34 +291,34 @@ BetterDungeon >> gridAt: pos [
 ]
 
 { #category : #accessing }
-BetterDungeon >> gridAt: pos put: data [
+BetterDungeons >> gridAt: pos put: data [
 	| point |
 	point := QuadTree pointRectFor: pos.
 	grid insert: point data: data
 ]
 
 { #category : #accessing }
-BetterDungeon >> gridLength [
+BetterDungeons >> gridLength [
 	^ gridLength
 ]
 
 { #category : #accessing }
-BetterDungeon >> gridLength: anObject [
+BetterDungeons >> gridLength: anObject [
 	gridLength := anObject
 ]
 
 { #category : #accessing }
-BetterDungeon >> gridWidth [
+BetterDungeons >> gridWidth [
 	^ gridWidth
 ]
 
 { #category : #accessing }
-BetterDungeon >> gridWidth: anObject [
+BetterDungeons >> gridWidth: anObject [
 	gridWidth := anObject
 ]
 
 { #category : #initialization }
-BetterDungeon >> initialize [ 
+BetterDungeons >> initialize [ 
 	seed := 0.
 	gridWidth := 20.
 	gridLength := 20.
@@ -326,6 +326,7 @@ BetterDungeon >> initialize [
 	minRoomWidth := 2.
 	minRoomLength := 2.
 	walkableCells := 0.
+	
 	random := Random new.
 	random useClockBasedSeed .
 	rooms := OrderedCollection new.
@@ -335,7 +336,7 @@ BetterDungeon >> initialize [
 ]
 
 { #category : #accessing }
-BetterDungeon >> isMiddleRoom: x y: y [
+BetterDungeons >> isMiddleRoom: x y: y [
 	| rv midX midY |
 	rv := false.
 	midX := (gridWidth / 2) floor.
@@ -347,7 +348,7 @@ BetterDungeon >> isMiddleRoom: x y: y [
 ]
 
 { #category : #testing }
-BetterDungeon >> isOutOfBoundsX: x y: y [
+BetterDungeons >> isOutOfBoundsX: x y: y [
 	"Transcript show:'isOutOfBound for ',(x asString),' @ ',(y asString);cr."
 	x < 0
 		ifTrue: [ ^ true ].
@@ -361,7 +362,7 @@ BetterDungeon >> isOutOfBoundsX: x y: y [
 ]
 
 { #category : #accessing }
-BetterDungeon >> isWallX: x y: y [
+BetterDungeons >> isWallX: x y: y [
 	| rv |
 	rv := false.
 	((self isOutOfBoundsX: x y: y) or: ((self gridAt: x @ y) = 1))
@@ -370,47 +371,47 @@ BetterDungeon >> isWallX: x y: y [
 ]
 
 { #category : #accessing }
-BetterDungeon >> minRoomLength [
+BetterDungeons >> minRoomLength [
 	^ minRoomLength
 ]
 
 { #category : #accessing }
-BetterDungeon >> minRoomLength: anObject [
+BetterDungeons >> minRoomLength: anObject [
 	minRoomLength := anObject
 ]
 
 { #category : #accessing }
-BetterDungeon >> minRoomWidth [
+BetterDungeons >> minRoomWidth [
 	^ minRoomWidth
 ]
 
 { #category : #accessing }
-BetterDungeon >> minRoomWidth: anObject [
+BetterDungeons >> minRoomWidth: anObject [
 	minRoomWidth := anObject
 ]
 
 { #category : #accessing }
-BetterDungeon >> passes [
+BetterDungeons >> passes [
 	^ passes
 ]
 
 { #category : #accessing }
-BetterDungeon >> passes: p [
+BetterDungeons >> passes: p [
 	passes := p
 ]
 
 { #category : #accessing }
-BetterDungeon >> percentWalls [
+BetterDungeons >> percentWalls [
 	^ percentWalls
 ]
 
 { #category : #accessing }
-BetterDungeon >> percentWalls: anObject [
+BetterDungeons >> percentWalls: anObject [
 	percentWalls := anObject
 ]
 
 { #category : #initialization }
-BetterDungeon >> prepareDungeon [
+BetterDungeons >> prepareDungeon [
 	Transcript show:'prepareDungeon gridWidth: ',(gridWidth asString);cr.	
 	grid := QuadTree
 		size: self gridWidth
@@ -421,7 +422,7 @@ BetterDungeon >> prepareDungeon [
 ]
 
 { #category : #accessing }
-BetterDungeon >> randomDataFor: row col: col [
+BetterDungeons >> randomDataFor: row col: col [
 	| prng rv |
 	rv := 0.
 	prng := random next.
@@ -437,7 +438,7 @@ BetterDungeon >> randomDataFor: row col: col [
 ]
 
 { #category : #initialization }
-BetterDungeon >> removeRooms [
+BetterDungeons >> removeRooms [
 	| midCell easystar newrooms |
 	Transcript
 		show: 'removeRooms';
@@ -462,17 +463,17 @@ BetterDungeon >> removeRooms [
 ]
 
 { #category : #accessing }
-BetterDungeon >> seed [
+BetterDungeons >> seed [
 	^ seed
 ]
 
 { #category : #accessing }
-BetterDungeon >> seed: anObject [
+BetterDungeons >> seed: anObject [
 	seed := anObject
 ]
 
 { #category : #initialization }
-BetterDungeon >> smoothStep [
+BetterDungeons >> smoothStep [
 	1 to: gridLength do: [ :y | 
 		1 to: gridWidth do: [ :x | 
 			(self gridAt: x @ y) <= 1
@@ -480,7 +481,7 @@ BetterDungeon >> smoothStep [
 ]
 
 { #category : #initialization }
-BetterDungeon >> smoothStepAroundRooms [
+BetterDungeons >> smoothStepAroundRooms [
 	1 to: gridLength do: [ :y | 
 		1 to: gridWidth do: [ :x | 
 			((self gridAt: x @ y) <= 1)
@@ -488,11 +489,11 @@ BetterDungeon >> smoothStepAroundRooms [
 ]
 
 { #category : #accessing }
-BetterDungeon >> walkableCells [
+BetterDungeons >> walkableCells [
 	^ walkableCells
 ]
 
 { #category : #accessing }
-BetterDungeon >> walkableCells: anObject [
+BetterDungeons >> walkableCells: anObject [
 	walkableCells := anObject
 ]

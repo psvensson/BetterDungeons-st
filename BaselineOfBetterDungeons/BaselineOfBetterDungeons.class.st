@@ -1,17 +1,17 @@
 Class {
-	#name : #BaselineOfBetterDungeon,
+	#name : #BaselineOfBetterDungeons,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfBetterDungeon
+	#category : #BaselineOfBetterDungeons
 }
 
 { #category : #baselines }
-BaselineOfBetterDungeon >> baseline: spec [
+BaselineOfBetterDungeons >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
 		do: [
 			spec 
-				package: 'BetterDungeon-Core'.
+				package: 'BetterDungeons-Core'.
 				spec
     			baseline: 'QuadTree'
     			with: [ spec repository: 'github://psvensson/QuadTree:master' ] ].
@@ -20,6 +20,6 @@ BaselineOfBetterDungeon >> baseline: spec [
 ]
 
 { #category : #baselines }
-BaselineOfBetterDungeon >> projectClass [
+BaselineOfBetterDungeons >> projectClass [
 	^ MetacelloCypressBaselineProject
 ]
