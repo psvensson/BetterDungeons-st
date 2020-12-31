@@ -14,7 +14,7 @@ BaselineOfBetterDungeons >> baseline: spec [
 				package: 'BetterDungeons-Core'.
 				spec
     			baseline: 'QuadTree'
-    			with: [ spec repository: 'github://psvensson/QuadTree:master' ] ].
+    			with: [ spec repository: 'github://psvensson/QuadTree' ] ].
 			
 		
 ]
